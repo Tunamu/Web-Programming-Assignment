@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
-import Questions from "./models/Questions.js";
+import QuestionsModel from "./models/Questions.model.js";
 import cors from 'cors';
 
 dotenv.config();
@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.get('/api/GetAllQuestions', async (req, res) => {
     try{
-        const questions = await Questions.find();
+        const questions = await QuestionsModel.find();
         res.status(200).json({success: true, questions: questions});
     }catch(error){
         console.error("Error getting questions from server");
@@ -27,7 +27,7 @@ app.post('/api/PostQuestion', async (req, res) => {
         return res.status(400).json({success: false, message: 'Please provide all fields'});
     }
 
-    const newQuestion = new Questions(question);
+    const newQuestion = new QuestionsModel(question);
 
     try{
         await newQuestion.save();
@@ -41,7 +41,7 @@ app.post('/api/PostQuestion', async (req, res) => {
 app.delete('/api/DeleteQuestion/:id', async (req, res) => {
     const {id} = req.params;
     try{
-        await Questions.findByIdAndDelete({_id: id});
+        await QuestionsModel.findByIdAndDelete({_id: id});
         return res.status(200).json({success: true, message:  "Question deleted successfully" });
     }catch(error){
         console.error("Error deleting Question", error.message);
