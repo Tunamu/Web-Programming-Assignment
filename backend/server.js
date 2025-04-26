@@ -1,43 +1,56 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const session = require('express-session');
-const path = require('path');
+import express from 'express';
+import dotenv from 'dotenv';
+import { connectDB } from './config/db.js';
+import Questions from "./models/Questions.js";
+import cors from 'cors';
 
 dotenv.config();
-const app = express();
 
+const app = express()
 app.use(cors());
-app.use(express.json());
+app.use(express.json())
 
-app.use(session({
-  secret: 'sessionSecret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // local için true olmasın
-}));
+app.get('/api/GetAllQuestions', async (req, res) => {
+    try{
+        const questions = await Questions.find();
+        res.status(200).json({success: true, questions: questions});
+    }catch(error){
+        console.error("Error getting questions from server");
+        res.status(500).json({success:false ,error: error.message});
+    }
+})
 
-// Route'ları bağla
-const quizRoutes = require('./routes/quiz');
-app.use('/api/quiz', quizRoutes);  // Burada "/api/quiz" ile bağlantı kuruluyor
+app.post('/api/PostQuestion', async (req, res) => {
+    const question = req.body;
 
-// MongoDB bağlantısı
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('✅ MongoDB bağlantısı başarılı'))
-  .catch(err => console.log('❌ MongoDB bağlantı hatası:', err));
+    if(!question.type || !question.difficulty || !question.category || !question.question || !question.correct_answer || !question.incorrect_answers){
+        return res.status(400).json({success: false, message: 'Please provide all fields'});
+    }
 
-// API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/quiz', require('./routes/quiz'));
+    const newQuestion = new Questions(question);
 
-// Frontend build'i üretim için (opsiyonel)
-// app.use(express.static(path.join(__dirname, '../frontend/build')));
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-// });
+    try{
+        await newQuestion.save();
+        return res.status(200).json({success: true, question: newQuestion});
+    }catch(error){
+        console.error("Error creating Question", error.message);
+        res.status(500).json({success: false, message: "Server Error"});
+    }
+})
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Sunucu ${PORT} portunda çalışıyor`));
+app.delete('/api/DeleteQuestion/:id', async (req, res) => {
+    const {id} = req.params;
+    try{
+        await Questions.findByIdAndDelete({_id: id});
+        return res.status(200).json({success: true, message:  "Question deleted successfully" });
+    }catch(error){
+        console.error("Error deleting Question", error.message);
+        res.status(404).json({success: false, message: "Question not found"});
+    }
+})
+
+app.listen(5001, ()=> {
+    connectDB()
+    console.log("Server started at http://localhost:5000");
+});
+
