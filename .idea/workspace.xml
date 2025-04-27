@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f6bc879-7c23-4d91-8669-002255180f0c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/controllers/Users.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/models/Users.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/routes/Users.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/Questions.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/Questions.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-    </list>
+    <list default="true" id="4f6bc879-7c23-4d91-8669-002255180f0c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745705329288</updated>
       <workItem from="1745705331248" duration="6170000" />
-      <workItem from="1745755627579" duration="2005000" />
+      <workItem from="1745755627579" duration="2891000" />
     </task>
     <servers />
   </component>
