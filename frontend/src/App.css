@@ -1,0 +1,9 @@
+.App{
+    background-color: lightgray;
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: auto;
+    background-color: rgb(75,75,75);
+    color: whitesmoke;
+    padding: 20px;
+}

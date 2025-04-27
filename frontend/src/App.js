@@ -11,8 +11,8 @@ function App() {
     <div className="App">
         <NavBar/>
       <Routes>
-          <Route path="/" element={<LoginPage/>} />
-          <Route path="/MainPage" element={<MainPage/>} />
+          <Route path="/SignUp" element={<LoginPage/>} />
+          <Route path="/" element={<MainPage/>} />
           <Route path="/Quiz" element={<QuizPage/>} />
       </Routes>
     </div>
