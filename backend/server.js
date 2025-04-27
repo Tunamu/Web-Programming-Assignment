@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import cors from 'cors';
-import questionRoutes from './routes/Questions.route.js';
+import questionRoute from './routes/Questions.route.js';
+import usersRoute from "./routes/Users.route.js";
 
 dotenv.config();
 
@@ -12,7 +13,8 @@ const app = express()
 app.use(cors());
 app.use(express.json())
 
-app.use("/api/Questions", questionRoutes)
+app.use("/api/Questions", questionRoute)
+app.use("/api/Users", usersRoute)
 
 app.listen(PORT, ()=> {
     connectDB()
