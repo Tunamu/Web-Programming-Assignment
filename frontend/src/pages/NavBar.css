@@ -17,6 +17,10 @@
     cursor: pointer;
 }
 
+.SignUp-Login-Btn:hover{
+    background: rgb(193, 192, 192);
+}
+
 .NavBar-Left:active, .SignUp-Login-Btn:active{
     color: white;
     cursor: wait;
