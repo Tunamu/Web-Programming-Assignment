@@ -5,23 +5,36 @@ function MainSitePage() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5001/api/Questions')
+        fetch('http://localhost:5001/api/Questions/Quiz')
             .then(res => res.json())
-            .then(data => setData(data))
+            .then(data => setData(data.questions))
             .catch(error => console.log(error));
     }, []);
 
     return (
         <div>
-            {data ? (
-                <ul>
-                    {data.questions.map((item, index) => (
-                        <li key={index}>{item.correct_answer}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>Loading...</p>
-            )}
+            {data ? (data.map((questionObj) => (
+                <div key={questionObj._id} className="Question-Section">
+                    <h3>{questionObj.question}</h3>
+                    <div className={"Question-Info"}>
+                        <span>Difficulty: {questionObj.difficulty}</span>
+                        <span>{questionObj.category}</span>
+                    </div>
+                    {questionObj.type === "boolean" ? (
+                        <>
+                            <button>True</button>
+                            <button>False</button>
+                        </>
+                    ):(
+                        <>
+                            <button>A: {questionObj.correct_answer}</button>
+                            <button>B: {questionObj.incorrect_answers[0]}</button>
+                            <button>C: {questionObj.incorrect_answers[1]}</button>
+                            <button>D: {questionObj.incorrect_answers[2]}</button>
+                        </>
+                    )}
+                </div>
+            ))) : (<p className={"Load"}>Loading...</p>)}
         </div>
     );
 }
