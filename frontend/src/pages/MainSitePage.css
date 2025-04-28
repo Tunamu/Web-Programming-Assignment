@@ -7,7 +7,7 @@
 }
 
 .Question-Section h3{
-    font-size: 28px;
+    font-size: 32px;
 }
 
 .Question-Info{
@@ -15,7 +15,7 @@
     flex-direction: row;
     align-items: center;
     gap: 20px;
-    margin-bottom: 30px
+    margin-bottom: 50px
 }
 
 .Question-Info span{

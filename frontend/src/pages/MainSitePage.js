@@ -40,3 +40,8 @@ function MainSitePage() {
 }
 
 export default MainSitePage;
+
+//şimdi burada başlat dedikten (ne kadar hızlı o kadar iyi diyecek vs) sonra 10 soru çekecek ve sırasıyla gösterecek her sorunun sayacı olacak ve cevap tuşuna bastığında basana kadarki süreyi ve cevabı alacak en son on sorunun datası db'e gidip sonuç hesaplanacak sonra sonuç getirilecek ve leaderboard da gelecek.
+//giriş yap aktif edilecek ve çözüldüğünde hesaplanan puan kişiye kaydedilecek
+//leaderboard içindb azalana göre sıralayıp ekrana getirilecek
+//facebook ile giriş passport api yapılacak
