@@ -10,6 +10,15 @@ export const getQuiz = async (req, res) => {
     }
 }
 
+export const startQuiz = async (req, res) => {
+    try{
+        const questions = await QuestionsModel.aggregate([{ $sample: { size: 10 } }]);
+        res.status(200).json({success:true, questions:questions});
+    }catch(error){
+        res.status(500).json({success:false , error:error});
+    }
+}
+
 export const getAllQuestions = async (req, res) => {
     try{
         const questions = await QuestionsModel.find();

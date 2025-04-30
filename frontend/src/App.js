@@ -4,6 +4,7 @@ import NavBar from "./pages/NavBar";
 import SignUpPage from "./pages/SignUpPage";
 import MainPage from "./pages/MainPage";
 import QuizPage from "./pages/QuizPage";
+import ResultPage from "./pages/ResultPage";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/SignUp" element={<SignUpPage/>} />
           <Route path="/" element={<MainPage/>} />
           <Route path="/Quiz" element={<QuizPage/>} />
+          <Route path="/Result" element={<ResultPage/>} />
       </Routes>
     </div>
   );

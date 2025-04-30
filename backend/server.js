@@ -4,6 +4,7 @@ import { connectDB } from './config/db.js';
 import cors from 'cors';
 import questionRoute from './routes/Questions.route.js';
 import usersRoute from "./routes/Users.route.js";
+import quizRoute from "./routes/Quiz.route.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json())
 
 app.use("/api/Questions", questionRoute)
 app.use("/api/Users", usersRoute)
+app.use("/api/Quiz", quizRoute)
 
 app.listen(PORT, ()=> {
     connectDB()

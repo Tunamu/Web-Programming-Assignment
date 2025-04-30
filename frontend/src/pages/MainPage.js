@@ -1,10 +1,10 @@
 import GetPromoPage from "./GetPromoPage";
-import MainSitePage from "./MainSitePage";
+import HomePage from "./HomePage";
 
 function MainPage() {
     const isLoggedIn = true;
 
-    return isLoggedIn ? <MainSitePage /> : <GetPromoPage />
+    return isLoggedIn ? <HomePage /> : <GetPromoPage />
 }
 
 export default MainPage;
