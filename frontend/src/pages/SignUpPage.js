@@ -34,7 +34,7 @@ function SignUpPage() {
                 })
             }).then(res => res.json())
                 .then(result => {
-                    //buraya da yönlendirme yapılacak
+                    //buraya da yönlendirme yapılacak ve userid gelecek onu da sessiona atacağız
                     setError(result.message);
                 })
                 .catch(error => setError(error.message));

@@ -55,7 +55,7 @@ function QuizPage() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(answersToSend)
+            body: JSON.stringify(answersToSend) //Buraya id de eklenecek
         })
             .then((res) => res.json())
             .then(result => {
