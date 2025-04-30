@@ -1,5 +1,5 @@
 import './QuizPage.css';
-import { useEffect, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 function QuizPage() {
@@ -7,18 +7,22 @@ function QuizPage() {
     const [dataIndex, setDataIndex] = useState(0);
     const [startTime, setStartTime] = useState(null);
     const [answers, setAnswers] = useState([]);
+    const hasFetched = useRef(false);
     localStorage.setItem("score", "0");
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5001/api/Questions/StartQuiz')
-            .then(res => res.json())
-            .then(data => {
-                setData(data.questions);
-                setStartTime(Date.now());
-            })
-            .catch(error => console.log(error));
+        if (!hasFetched.current) {
+            hasFetched.current = true;
+            fetch('http://localhost:5001/api/Questions/StartQuiz')
+                .then(res => res.json())
+                .then(data => {
+                    setData(data.questions);
+                    setStartTime(Date.now());
+                })
+                .catch(error => console.log(error));
+        }
     }, []);
 
     const AnswerFunc = (selectedAnswer) => {
@@ -101,9 +105,8 @@ function QuizPage() {
 
 export default QuizPage;
 
-//TODO başlarken iki kere api çağırıyor
-//TODO en son on sorunun datası db'e gidip sonuç hesaplanacak sonra sonuç getirilecek ve leaderboard da gelecek.
 //TODO giriş yapma session açacak ve bu skoru da sessiona atacağız session tutacak - şimdilik local storage yapıldı
+//TODO en son on sorunun datası db'e gidip sonuç hesaplanacak sonra sonuç getirilecek ve leaderboard da gelecek.
 //TODO giriş yapmayı aktif edip sessionlar aktif edilecek
 //TODO pasport api entegrasyonu
 //TODO passport api username belirleme olacak

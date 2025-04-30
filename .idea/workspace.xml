@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f6bc879-7c23-4d91-8669-002255180f0c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/controllers/Quiz.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/models/Quiz.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/routes/Quiz.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/HomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ResultPage.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/ResultPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/Questions.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/Questions.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/Questions.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/Questions.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MainSitePage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/QuizPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MainSitePage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/NavBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/NavBar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/Users.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/Users.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Users.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Users.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/Users.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/Users.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/QuizPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/QuizPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/SignUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/SignUpPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +67,8 @@
       <workItem from="1745755627579" duration="2891000" />
       <workItem from="1745768541144" duration="18442000" />
       <workItem from="1745876441093" duration="3381000" />
-      <workItem from="1745956288785" duration="10295000" />
+      <workItem from="1745956288785" duration="10503000" />
+      <workItem from="1746031802644" duration="4365000" />
     </task>
     <servers />
   </component>

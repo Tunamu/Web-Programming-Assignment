@@ -13,10 +13,6 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    maxPoints: {
-        type: Number,
-        required: false
-    }
 })
 
 

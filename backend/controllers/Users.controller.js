@@ -26,17 +26,24 @@ export const getUser = async (req, res) => {
 }
 
 export const postUser = async (req, res) => {
-    const user = req.body;
+    const {username, password, email} = req.body;
+    console.log(req.body);
 
-    if(!user.username || !user.password || !user.email){
+    if(!username || !password || !email){
         return res.status(400).json({success: "false", message:"Please enter all fields"});
     }
 
-    const newUser = new UsersModel(user)
+    const user = await UsersModel.findOne({ username });
+
+    if (user) {
+        return res.status(401).json({ success: false, message: "User already exists" });
+    }
+
+    const newUser = new UsersModel({username, password, email});
 
     try{
         await newUser.save()
-        res.status(200).json({success: "true", data: newUser});
+        res.status(200).json({success: "true", message: "User successfully created"});
     }catch(error){
         console.log("Error creating user." + error.message);
         res.status(500).json({success: "false", message: error.message});
@@ -74,3 +81,19 @@ export const updateUser = async (req, res) => {
         res.status(500).json({success: "false", message: error.message});
     }
 }
+
+export const loginUser = async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await UsersModel.findOne({ username, password });
+
+        if (!user) {
+            return res.status(500).json({ success: false, message: "Invalid username or password" });
+        }
+
+        res.status(200).json({ success: true, message: "Login successful", user });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
