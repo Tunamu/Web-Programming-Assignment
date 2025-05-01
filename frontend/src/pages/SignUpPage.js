@@ -1,5 +1,6 @@
 import './SignUpPage.css'
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function SignUpPage() {
     const [UserInfo, setUserInfo] = useState({
@@ -10,7 +11,9 @@ function SignUpPage() {
     });
     const [Error, setError] = useState("");
 
-    const [isSignUpPart, setIsSignUpPart] = useState(true);
+    const [isSignUpPart, setIsSignUpPart] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(isSignUpPart){
@@ -34,7 +37,9 @@ function SignUpPage() {
                 })
             }).then(res => res.json())
                 .then(result => {
-                    //buraya da yönlendirme yapılacak ve userid gelecek onu da sessiona atacağız
+                    sessionStorage.setItem("isAuthorised", "true");
+                    sessionStorage.setItem("username", result.username);
+                    navigate("/Home");
                     setError(result.message);
                 })
                 .catch(error => setError(error.message));
@@ -61,7 +66,9 @@ function SignUpPage() {
             }).then(res => res.json())
                 .then(result => {
                     setError(result.message);
-                    //buraya anasayfaya yönlendirme ve session oluşturma yapılacak
+                    sessionStorage.setItem("isAuthorised", "true");
+                    sessionStorage.setItem("username", UserInfo.username);
+                    navigate("/Home");
                 })
                 .catch(error => setError(error.message));
         }

@@ -5,13 +5,26 @@ import {useNavigate} from "react-router-dom";
 function NavBar() {
     const navigate = useNavigate();
 
+    const handleLogout = () => {
+        sessionStorage.setItem("isAuthorised", "false");
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("score");
+        navigate("/");
+    }
+
     return (
         <div className="NavBar">
             <button className="NavBar-Left" onClick={()=>navigate("/")}>
                 Quiss
                 <FaRegLightbulb />
             </button>
-            <button onClick={()=>navigate("/SignUp")} className={"SignUp-Login-Btn"}>SignUp / Login</button>
+            <div>
+                {sessionStorage.getItem("isAuthorised")==="true" ? (
+                    <button onClick={()=>handleLogout()} className={"SignUp-Login-Btn"}>Logout</button>
+                ):(
+                    <button onClick={()=>navigate("/SignUp")} className={"SignUp-Login-Btn"}>SignUp / Login</button>
+                )}
+            </div>
         </div>
     )
 }

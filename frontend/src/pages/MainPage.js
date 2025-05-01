@@ -1,10 +1,11 @@
 import GetPromoPage from "./GetPromoPage";
 import HomePage from "./HomePage";
+import {useNavigate} from "react-router-dom";
 
 function MainPage() {
-    const isLoggedIn = true;
+    const navigate = useNavigate();
 
-    return isLoggedIn ? <HomePage /> : <GetPromoPage />
+    return sessionStorage.getItem("isAuthorised")==="true" ? (navigate("/Home")) : <GetPromoPage />
 }
 
 export default MainPage;

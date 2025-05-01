@@ -1,10 +1,19 @@
 import './ResultPage.css'
 
 function ResultPage() {
-    const score = localStorage.getItem("score")
+    const score = sessionStorage.getItem("score")
+    const username = sessionStorage.getItem("username")
     return (
         <div>
-            {score}
+            {sessionStorage.getItem("isAuthorised")==="true" ? (
+                <div>
+                    {username}'s new score is: {score}!!!
+                </div>
+            ):(
+                <div>
+                    <h2 className={"Question-Section"}>User not authorised!</h2>
+                </div>
+            )}
         </div>
     )
 }

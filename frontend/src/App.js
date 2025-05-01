@@ -5,6 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import MainPage from "./pages/MainPage";
 import QuizPage from "./pages/QuizPage";
 import ResultPage from "./pages/ResultPage";
+import HomePage from "./pages/HomePage";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
           <Route path="/SignUp" element={<SignUpPage/>} />
           <Route path="/" element={<MainPage/>} />
+          <Route path="/Home" element={<HomePage/>} />
           <Route path="/Quiz" element={<QuizPage/>} />
           <Route path="/Result" element={<ResultPage/>} />
       </Routes>

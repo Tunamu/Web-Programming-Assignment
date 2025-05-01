@@ -55,11 +55,14 @@ function QuizPage() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(answersToSend) //Buraya id de eklenecek
-        })
+            body: JSON.stringify({
+                username: sessionStorage.getItem("username"),
+                data: answersToSend
+        })})
             .then((res) => res.json())
             .then(result => {
-                localStorage.setItem('score', result.score);
+                console.log(result); //
+                sessionStorage.setItem('score', result.score);
                 navigate('/result');
             })
             .catch(error => {
@@ -80,6 +83,7 @@ function QuizPage() {
 
     return (
         <div>
+            {sessionStorage.getItem("isAuthorised")==="true" ? (
                 <div key={tempQuestion._id} className="Question-Section">
                     <h3>{dataIndex+1}) {tempQuestion.question}</h3>
                     <div className={"Question-Info"}>
@@ -92,22 +96,25 @@ function QuizPage() {
                             <button onClick={()=>AnswerFunc("False")}>False</button>
                         </>
                     ):(
-                            shuffleAnswers([tempQuestion.correct_answer, ...tempQuestion.incorrect_answers]).map((answer, index) => (
+                        shuffleAnswers([tempQuestion.correct_answer, ...tempQuestion.incorrect_answers]).map((answer, index) => (
                             <button key={index} onClick={() => AnswerFunc(answer)}>
                                 {String.fromCharCode(65 + index)}: {answer}
                             </button>
-                            ))
+                        ))
                     )}
                 </div>
+            ):(
+                <h2 className={"Question-Section"}>User not authorised!</h2>
+            )}
+
         </div>
     );
 }
 
 export default QuizPage;
 
-//TODO giriş yapma session açacak ve bu skoru da sessiona atacağız session tutacak - şimdilik local storage yapıldı
+
 //TODO en son on sorunun datası db'e gidip sonuç hesaplanacak sonra sonuç getirilecek ve leaderboard da gelecek.
-//TODO giriş yapmayı aktif edip sessionlar aktif edilecek
 //TODO pasport api entegrasyonu
 //TODO passport api username belirleme olacak
 //TODO password hashleme bakılacak

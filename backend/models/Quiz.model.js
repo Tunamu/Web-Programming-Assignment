@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const QuizSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
+    username: {
+        type: String,
         required: true,
     },
     score: {
-        type: mongoose.Schema.Types.Double,
+        type: Number,
         required: true,
     }},
     {
