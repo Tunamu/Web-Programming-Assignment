@@ -114,7 +114,7 @@ function QuizPage() {
 export default QuizPage;
 
 
-//TODO en son on sorunun datası db'e gidip sonuç hesaplanacak sonra sonuç getirilecek ve leaderboard da gelecek.
+//TODO leaderboard da gelecek.
 //TODO pasport api entegrasyonu
 //TODO passport api username belirleme olacak
 //TODO password hashleme bakılacak
