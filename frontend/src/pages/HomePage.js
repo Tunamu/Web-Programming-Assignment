@@ -13,7 +13,7 @@ function MainSitePage() {
                     <button onClick={()=>navigate("/Quiz")}>Start Quiz</button>
                 </>
             ):(
-                <h3>User not authorised</h3>
+                <h3><strong>User not authorised</strong></h3>
             )}
         </div>
     );

@@ -14,7 +14,9 @@ function NavBar() {
 
     return (
         <div className="NavBar">
-            <button className="NavBar-Left" onClick={()=>navigate("/")}>
+            <button className="NavBar-Left" onClick={()=> {
+                sessionStorage.getItem("isAuthorised")==="true" ?navigate("/Home"):navigate("/");
+            }}>
                 Quiss
                 <FaRegLightbulb />
             </button>
