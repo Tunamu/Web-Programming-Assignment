@@ -6,11 +6,19 @@ function NavBar() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        fetch("http://localhost:5001/api/Auth/logout", {
+            method: "GET",
+            credentials: "include",
+        })
+            .catch((err) => {
+                console.error("Logout failed", err);
+            });
+
         sessionStorage.setItem("isAuthorised", "false");
         sessionStorage.removeItem("username");
         sessionStorage.removeItem("score");
         navigate("/");
-    }
+    };
 
     return (
         <div className="NavBar">

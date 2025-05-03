@@ -29,11 +29,11 @@ export const postQuiz = async (req, res) => {
             }
         })
         const username = data.username;
-        const isAnyUserWithThisUsername = await UsersModel.findOne({ username});
+        //const isAnyUserWithThisUsername = await UsersModel.findOne({ username});
 
-        if(!isAnyUserWithThisUsername ){
-            return res.status(400).json({success:false ,message:"Username not found in database"});
-        }
+        //if(!isAnyUserWithThisUsername ){
+        //    return res.status(400).json({success:false ,message:"Username not found in database"});
+        //}
 
         const newQuiz = new QuizModel({
             username: data.username ,

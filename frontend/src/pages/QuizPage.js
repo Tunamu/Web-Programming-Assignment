@@ -70,6 +70,13 @@ function QuizPage() {
             });
     };
 
+    function decodeHtmlEntities(text) {
+        const txt = document.createElement("textarea");
+        txt.innerHTML = text;
+        return txt.value;
+    }
+
+
 
     function shuffleAnswers(array) {
         return array.sort(() => Math.random() - 0.5);
@@ -85,7 +92,7 @@ function QuizPage() {
         <div>
             {sessionStorage.getItem("isAuthorised")==="true" ? (
                 <div key={tempQuestion._id} className="Question-Section">
-                    <h3>{dataIndex+1}) {tempQuestion.question}</h3>
+                    <h3>{dataIndex+1}) {decodeHtmlEntities(tempQuestion.question)}</h3>
                     <div className={"Question-Info"}>
                         <span>Difficulty: {tempQuestion.difficulty}</span>
                         <span>{tempQuestion.category}</span>
@@ -98,7 +105,7 @@ function QuizPage() {
                     ):(
                         shuffleAnswers([tempQuestion.correct_answer, ...tempQuestion.incorrect_answers]).map((answer, index) => (
                             <button key={index} onClick={() => AnswerFunc(answer)}>
-                                {String.fromCharCode(65 + index)}: {answer}
+                                {String.fromCharCode(65 + index)}: {decodeHtmlEntities(answer)}
                             </button>
                         ))
                     )}
@@ -114,8 +121,5 @@ function QuizPage() {
 export default QuizPage;
 
 
-
-//TODO pasport api entegrasyonu
-//TODO passport api username belirleme olacak
 //TODO password hashleme bakılacak
 //TODO responsive tasarım

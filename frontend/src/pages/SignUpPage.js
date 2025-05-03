@@ -16,10 +16,25 @@ function SignUpPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(isSignUpPart){
+        if (sessionStorage.getItem("isAuthorised") === "true") return;
 
-        }
-    }, [isSignUpPart]);
+        const timer = setTimeout(() => {
+            fetch("http://localhost:5001/api/Auth/login/success", {
+                method: "GET",
+                credentials: "include"
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.user) {
+                        sessionStorage.setItem("isAuthorised", "true");
+                        sessionStorage.setItem("username", data.user.username || data.user.displayName);
+                        navigate("/Home");
+                    }
+                })
+                .catch(err => console.log("Github login error:", err));
+        },300)
+    }, []);
+
 
     function handleLogin(e){
         setError("");
@@ -44,6 +59,10 @@ function SignUpPage() {
                 })
                 .catch(error => setError(error.message));
         }
+    }
+
+    function handleGithub(){
+        window.open("http://localhost:5001/api/Auth/github", "_self")
     }
 
     function handleSignUp(){
@@ -96,7 +115,7 @@ function SignUpPage() {
                 <>
                     <h2>SignUp</h2>
                     <input
-                        placeholder={"Username"}
+                        placeholder={"Username (No space)"}
                         value={UserInfo.username}
                         onChange={(e) => setUserInfo({...UserInfo, username: e.target.value})}
                     />
@@ -124,7 +143,7 @@ function SignUpPage() {
                 <>
                     <h2>Login</h2>
                     <input
-                        placeholder={"username"}
+                        placeholder={"Username"}
                         value={UserInfo.username}
                         onChange={(e) => setUserInfo({...UserInfo, username: e.target.value})}
                     />
@@ -138,6 +157,8 @@ function SignUpPage() {
                     <h3>{Error}</h3>
                 </>
             )}
+
+            <button onClick={handleGithub} className={"Confirm-Button"}>Login with Github</button>
         </div>
         )
 }
