@@ -3,7 +3,8 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 15px
+    gap: 15px;
+    padding: 16px;
 }
 
 .Question-Section h3{
@@ -41,4 +42,10 @@
 
 .Question-Section button:hover{
     background: rgb(193, 192, 192);
+}
+
+@media (max-width: 750px){
+    .Question-Section{
+        margin: 0;
+    }
 }
