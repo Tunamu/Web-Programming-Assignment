@@ -13,7 +13,6 @@ const ScoreCalculator = (grade,time ) => {
 export const postQuiz = async (req, res) => {
     try{
         const data = req.body;
-        console.log(data); //
         const questions = data.data;
         let score = 0;
 
