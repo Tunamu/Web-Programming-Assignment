@@ -16,7 +16,7 @@ function SignUpPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (sessionStorage.getItem("isAuthorised") === "true") return;
+        if (sessionStorage.getItem("isAuthorised") === "false") return;
 
         const timer = setTimeout(() => {
             fetch("http://localhost:5001/api/Auth/login/success", {
@@ -52,10 +52,13 @@ function SignUpPage() {
                 })
             }).then(res => res.json())
                 .then(result => {
-                    sessionStorage.setItem("isAuthorised", "true");
-                    sessionStorage.setItem("username", result.username);
-                    navigate("/Home");
-                    setError(result.message);
+                    if (result.success) {
+                        sessionStorage.setItem("isAuthorised", "true");
+                        sessionStorage.setItem("username", result.username);
+                        navigate("/Home");
+                    }else {
+                        setError(result.message || "Login failed");
+                    }
                 })
                 .catch(error => setError(error.message));
         }

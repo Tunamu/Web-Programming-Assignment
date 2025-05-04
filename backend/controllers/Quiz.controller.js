@@ -3,11 +3,14 @@ import mongoose from "mongoose";
 import UsersModel from "../models/Users.model.js";
 
 const ScoreCalculator = (grade,time ) => {
-    const n = 100 * grade;
-    const base = Math.abs(n * Math.exp(1));
-    const expo = -0.2 * time;
-    const result = Math.pow(base, expo);
-    return grade > 0 ? result : -result;
+    if(grade === 0){
+        return 0;
+    }else{
+        const n = 100 * grade;
+        const base = Math.abs(n * Math.exp(1));
+        const expo = -0.2 * time;
+        return Math.pow(base, expo);
+    }
 }
 
 export const postQuiz = async (req, res) => {
@@ -23,7 +26,7 @@ export const postQuiz = async (req, res) => {
                 if(item.selectedAnswer === item.correctAnswer) {
                     score += ScoreCalculator(1,item.timeTaken);
                 }else{
-                    score += ScoreCalculator(-1,item.timeTaken);
+                    score += ScoreCalculator(0,item.timeTaken);
                 }
             }
         })

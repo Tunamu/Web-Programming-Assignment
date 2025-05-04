@@ -1,5 +1,6 @@
 import UsersModel from "../models/Users.model.js";
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 export const getAllUsers = async (req, res) => {
     try{
@@ -39,7 +40,8 @@ export const postUser = async (req, res) => {
         return res.status(401).json({ success: false, message: "User already exists" });
     }
 
-    const newUser = new UsersModel({username, password, email});
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new UsersModel({username, password:hashedPassword, email});
 
     try{
         await newUser.save()
@@ -86,10 +88,16 @@ export const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await UsersModel.findOne({ username, password });
+        const user = await UsersModel.findOne({ username:{ $eq: username }});
 
         if (!user) {
             return res.status(500).json({ success: false, message: "Invalid username or password" });
+        }
+
+        const isPasswordMatch = await bcrypt.compare(password,user.password);
+
+        if(!isPasswordMatch){
+            return res.status(401).json({success: false, message: "Invalid username or password"});
         }
 
         res.status(200).json({ success: true, message: "Login successful", username: username});

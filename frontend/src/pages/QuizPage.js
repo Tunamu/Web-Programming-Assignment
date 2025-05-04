@@ -122,4 +122,3 @@ export default QuizPage;
 
 
 //TODO password hashleme bakılacak
-//TODO responsive tasarım
